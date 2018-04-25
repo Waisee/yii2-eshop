@@ -1,6 +1,6 @@
 Options +FollowSymLinks
-IndexIgnore /
-RewriteEngine On
+IndexIgnore */*
+RewriteEngine on
 
 RewriteCond %{REQUEST_URI} !^/(web)
 RewriteRule ^assets/(.*)$ /web/assets/$1 [L]
@@ -12,4 +12,4 @@ RewriteRule (.*) /web/$1
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /web/index.php﻿
+RewriteRule . /web/index.php
