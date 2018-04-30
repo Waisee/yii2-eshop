@@ -1,9 +1,9 @@
 <?php
-/* @var $this yii\web\View */
+/* @var $this yii\web\View
+ * @var $hits app\models\Product */
 
 use yii\helpers\Html;
 
-$this->title = 'My Yii Application';
 ?>
 
 <section id="slider"><!--slider-->
