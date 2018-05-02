@@ -5,6 +5,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use yii\helpers\Url;
 ?>
 
 <section id="advertisement">
@@ -68,7 +69,7 @@ use yii\widgets\LinkPager;
                                         <div class="productinfo text-center">
                                             <?= Html::img("@web/images/products/{$product->img}", ['alt' => $product->name]) ?>
                                             <h2>$<?= $product->price ?></h2>
-                                            <p><?= $product->name ?></p>
+                                            <p><a href="<?php echo Url::to(['product/view', 'id' => $product->id]); ?>"><?= $product->name ?></a></p>
                                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                         <?php if ($product->new): ?>

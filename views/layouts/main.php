@@ -66,7 +66,7 @@ LtAppAsset::register($this);
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="logo pull-left">
-                                <a href="<?php Url::home(); ?>"><?php Html::img('@web/images/home/logo.png', ['alt' => 'E-SHOPPER']); ?></a>
+                                <a href="<?php echo Url::home(); ?>"><?php echo Html::img('@web/images/home/logo.png', ['alt' => 'E-SHOPPER']); ?></a>
                             </div>
                             <div class="btn-group pull-right">
                                 <div class="btn-group">
