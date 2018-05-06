@@ -9,6 +9,7 @@
 namespace app\controllers;
 
 use yii\web\Controller;
+use Yii;
 
 /**
  * Description of AppController
@@ -24,5 +25,4 @@ class AppController extends Controller{
         $this->view->registerMetaTag(['name' => 'description', 'content' => "$description"]);
         
     }
-    
 }

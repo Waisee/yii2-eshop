@@ -144,7 +144,9 @@ LtAppAsset::register($this);
                         </div>
                         <div class="col-sm-3">
                             <div class="search_box pull-right">
-                                <input type="text" placeholder="Search"/>
+                                <form method="GET" action="<?php echo Url::to(['product/search']); ?>">
+                                <input type="text" placeholder="Search" name="q">
+                                </form>
                             </div>
                         </div>
                     </div>
