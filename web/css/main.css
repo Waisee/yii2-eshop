@@ -234,6 +234,10 @@ a#scrollUp i{
   padding-left: 15px;
 }
 
+.del-item{
+    cursor: pointer;
+}
+
 .mainmenu ul li:first-child{
   padding-left: 0px;
 }

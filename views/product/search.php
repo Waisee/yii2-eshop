@@ -71,7 +71,7 @@ use yii\helpers\Url;
                                             <?= Html::img("@web/images/products/{$product->img}", ['alt' => $product->name]) ?>
                                             <h2>$<?= $product->price ?></h2>
                                             <p><a href="<?php echo Url::to(['product/view', 'id' => $product->id]); ?>"><?= $product->name ?></a></p>
-                                            <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                            <a href="#" data-id="<?= $product->id ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                         </div>
                                         <?php if ($product->new): ?>
                                             <?= Html::img("@web/images/home/new.png", ['alt' => 'Новинка', 'class' => 'new']) ?>
