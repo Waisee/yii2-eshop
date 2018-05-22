@@ -29,6 +29,7 @@ use yii\widgets\ActiveForm;
                         <th>Наименование</th>
                         <th>Количество</th>
                         <th>Цена</th>
+                        <th>Сумма</th>
                         <th></th>
                     </tr>
                 </thead>
