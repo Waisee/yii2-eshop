@@ -96,11 +96,22 @@ LtAppAsset::register($this);
                         <div class="col-sm-8">
                             <div class="shop-menu pull-right">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
+
                                     <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                                     <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                                     <li><a href="#" onclick="return getCart()"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                    <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                                    <li><a href="<?= Url::to(['/admin']) ?>"><i class="fa fa-lock"></i> Login</a></li>
+                                    <?php if (!Yii::$app->user->isGuest): ?>
+                                    <li><a>
+                                                <?= Html::beginForm(['/site/logout'], 'post'); ?>
+                                                <?=
+                                                Html::submitButton(
+                                                        'Logout (' . Yii::$app->user->identity->username . ')'
+                                                );
+                                                ?>
+                                        <?= Html::endForm(); ?>
+                                            </a></li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -155,7 +166,7 @@ LtAppAsset::register($this);
             </div><!--/header-bottom-->
         </header><!--/header-->
 
-        <?= $content ?>
+<?= $content ?>
 
         <footer id="footer"><!--Footer-->
             <div class="footer-top">
@@ -321,7 +332,7 @@ LtAppAsset::register($this);
             'id' => 'cart',
             'size' => 'modal-lg',
             'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-        <a href=" '. Url::to(['cart/view']) .'" class="btn btn-success">Оформить заказ</a>
+        <a href=" ' . Url::to(['cart/view']) . '" class="btn btn-success">Оформить заказ</a>
         <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>',
         ]);
 
@@ -332,7 +343,7 @@ LtAppAsset::register($this);
 
 
 
-        <?php $this->endBody() ?>
+<?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>
