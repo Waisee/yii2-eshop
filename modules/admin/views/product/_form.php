@@ -12,8 +12,8 @@ use mihaildev\elfinder\ElFinder;
 ?>
 
 <div class="product-form">
-
-    <?php $form = ActiveForm::begin(); ?>
+    
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?php //echo $form->field($model, 'category_id')->textInput() ?>
 
@@ -37,7 +37,7 @@ use mihaildev\elfinder\ElFinder;
 
     <?=
     $form->field($model, 'content')->widget(CKEditor::className(), [
-        'editorOptions' => ElFinder::ckeditorOptions('elfinder', []),
+        'editorOptions' => ElFinder::ckeditorOptions(['elfinder','path' => "/{$model->name}"], []),
     ]);
     ?>
 
@@ -47,7 +47,9 @@ use mihaildev\elfinder\ElFinder;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
+    
+    <?= $form->field($model, 'gallery[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 
     <?= $form->field($model, 'hit')->checkbox(['0', '1']) ?>
 

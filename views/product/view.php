@@ -44,34 +44,28 @@ use yii\helpers\Url;
 
                 </div>
             </div>
-
+            <?php $mainImg = $product->getImage(); ?>
+            <?php $gallery = $product->getImages(); ?>
             <div class="col-sm-9 padding-right">
                 <div class="product-details"><!--product-details-->
                     <div class="col-sm-5">
                         <div class="view-product">
-                            <?php echo Html::img("@web/images/products/{$product->img}", ['alt' => $product->name,]); ?>
+                            <?php echo Html::img($mainImg->getUrl(), ['alt' => $product->name,]); ?>
                             <h3>ZOOM</h3>
                         </div>
                         <div id="similar-product" class="carousel slide" data-ride="carousel">
 
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner">
-                                <div class="item active">
-                                    <a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-                                    <a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-                                    <a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
-                                </div>
-                                <div class="item">
-                                    <a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-                                    <a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-                                    <a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
-                                </div>
-                                <div class="item">
-                                    <a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-                                    <a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-                                    <a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
-                                </div>
-
+                                <?php $count = count($gallery);$i = 0; foreach ($gallery as $img): ?>
+                                    <?php if ($i % 3 == 0): ?>
+                                        <div class="item <?php if ($i == 0) echo ' active'; ?>">
+                                    <?php endif; ?>
+                                    <a href=""><?php echo Html::img($img->getUrl('84x85'), ['alt' => '']); ?></a>
+                                    <?php $i++; if ($i % 3 == 0 || $i == $count): ?>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </div>
 
                             <!-- Controls -->
@@ -90,8 +84,8 @@ use yii\helpers\Url;
                                 <?= Html::img("@web/images/home/new.png", ['alt' => 'Новинка', 'class' => 'newarrival']) ?>
                             <?php endif; ?>
                             <?php if ($product->sale): ?>
-                                <?= Html::img("@web/images/home/sale.png", ['alt' => 'Распродажа', 'class' => 'newarrival']) ?>
-                            <?php endif; ?>
+    <?= Html::img("@web/images/home/sale.png", ['alt' => 'Распродажа', 'class' => 'newarrival']) ?>
+<?php endif; ?>
                             <h2><?php echo $product->name; ?></h2>
                             <p>Web ID: 1089772</p>
                             <img src="/images/product-details/rating.png" alt="" />
@@ -108,11 +102,11 @@ use yii\helpers\Url;
                             <p><b>Condition:</b> New</p>
                             <p><b>Brand:</b>
                                 <a href="<?php echo Url::to(['category/view', 'id' => $product->category->id]) ?>">
-                                    <?php echo $product->category->name; ?>
+<?php echo $product->category->name; ?>
                                 </a>
                             </p>
                             <a href=""><img src="/images/product-details/share.png" class="share img-responsive"  alt="" /></a>
-                            <?= $product->content ?>
+<?= $product->content ?>
                         </div><!--/product-information-->
                     </div>
                 </div><!--/product-details-->
@@ -312,11 +306,14 @@ use yii\helpers\Url;
 
                     <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                            <?php $count = count($hits); $i = 0;
-                            foreach ($hits as $hit):?>
-                                    <?php if ($i % 3 == 0): ?>
-                            <div class="item <?php if ($i == 0) echo 'active';?>">
-                                    <?php endif; ?>
+                            <?php
+                            $count = count($hits);
+                            $i = 0;
+                            foreach ($hits as $hit):
+                                ?>
+    <?php if ($i % 3 == 0): ?>
+                                    <div class="item <?php if ($i == 0) echo 'active'; ?>">
+    <?php endif; ?>
                                     <div class="col-sm-4">
                                         <div class="product-image-wrapper">
                                             <div class="single-products">
@@ -329,10 +326,12 @@ use yii\helpers\Url;
                                             </div>
                                         </div>
                                     </div>
-                                <?php $i++; if ($i % 3 == 0 || $i == $count): ?>
-                                </div>
-                            <?php endif; ?>
-                            <?php endforeach; ?>
+                                <?php $i++;
+                                if ($i % 3 == 0 || $i == $count):
+                                    ?>
+                                    </div>
+    <?php endif; ?>
+<?php endforeach; ?>
                         </div>
                         <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                             <i class="fa fa-angle-left"></i>
